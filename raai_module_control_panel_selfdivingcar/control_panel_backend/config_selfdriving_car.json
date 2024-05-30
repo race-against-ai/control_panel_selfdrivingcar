@@ -1,0 +1,9 @@
+{
+  "start": false,
+  "stream": false,
+  "motor": false,
+  "process": false,
+  "debug": true,
+  "curvespeed": 8.0,
+  "straightlinespeed": 28.0
+}

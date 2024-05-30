@@ -1,0 +1,36 @@
+{
+    "max_throttle": 15,
+    "max_brake": 50,
+    "max_clutch": 50,
+    "max_steering": 100,
+    "button_status": false,
+    "platform_status": true,
+    "pedal_status": true,
+    "head_tracking_status": false,
+    "start_status": false,
+    "stream_status": false,
+    "motor_status": false,
+    "debug_status": false,
+    "process_status": false,
+    "steering_offset": -8.0,
+    "straightlinespeed": 0.0,
+    "curvespeed": 0.0,
+
+    "pynng": {
+        "publishers": {
+            "name_publisher": {
+                "address": "ipc:///tmp/RAAI/current_driver.ipc",
+                "topics": {}
+            }
+        },
+        "requesters": {
+          "database_request": {
+            "address": "ipc:///tmp/RAAI/rest_api.ipc",
+            "topics": {}
+          },
+          "connection_overlay": {
+            "address": "ipc:///tmp/RAAI/connection_overlay.ipc"
+          }
+        }
+    }
+}
