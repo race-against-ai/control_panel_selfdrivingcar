@@ -1,6 +1,6 @@
 # Control panel Selfdriving car
 
-Panel with GUI to start the selfdiving car.
+Control panel with GUI to start the selfdiving car.
 
 Functions of the components:
   buttons:
