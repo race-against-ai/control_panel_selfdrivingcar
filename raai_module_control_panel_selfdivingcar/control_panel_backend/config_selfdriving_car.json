@@ -1,9 +1,1 @@
-{
-  "start": false,
-  "stream": false,
-  "motor": false,
-  "process": false,
-  "debug": true,
-  "curvespeed": 8.0,
-  "straightlinespeed": 28.0
-}
+{"start": false, "stream": false, "motor": false, "process": false, "debug": false, "curvespeed": 0.0, "straightlinespeed": 0.0}

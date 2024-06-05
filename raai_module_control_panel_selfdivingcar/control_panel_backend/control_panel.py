@@ -5,6 +5,7 @@ import json
 import pynng
 import time
 import paramiko
+import subprocess
 
 from pathlib import Path
 
@@ -358,8 +359,15 @@ class ControlPanel:
         send_data(self.__pynng_data_publisher, payload, "platform")
 
     def change_start_status(self) -> None:
-        self.control_panel_model.set_start_status(not self.control_panel_model.get_start_status())
-        self.sendValueAndUpdate("start")
+        start_status = not self.control_panel_model.get_start_status()
+        self.control_panel_model.set_start_status(start_status)
+        
+        if start_status:
+            print("on button pressed")
+            self.run_start_script()
+        elif start_status == False:
+            print("off button pressed")
+            self.stop_tmux_session()
 
     def change_stream_status(self) -> None:
         self.control_panel_model.set_stream_status(not self.control_panel_model.get_stream_status())
@@ -445,8 +453,8 @@ class ControlPanel:
         ssh_port = 22  # Standard-SSH-Port
         ssh_username = 'itlab'
         ssh_password = '1234'
-        remote_path = '/home/itlab/cam/inside-out-mini/data.json'
-        #ControlPanel.send_json_file_via_ssh(local_path, ssh_host, ssh_port, ssh_username, ssh_password, remote_path)
+        remote_path = '/home/itlab/cam/inside-out-server/data.json'
+        ControlPanel.send_json_file_via_ssh(local_path, ssh_host, ssh_port, ssh_username, ssh_password, remote_path)
 
     def handle_speed_update(self, key):
         print(f'Updating {key}')
@@ -464,8 +472,66 @@ class ControlPanel:
             self.updateJsonFileFloat(local_path, key, new_value2)
         
         ssh_host = '192.168.30.123'
-        ssh_port = 22  # Standard-SSH-Port
+        ssh_port = 22
         ssh_username = 'itlab'
         ssh_password = '1234'
-        remote_path = '/home/itlab/cam/inside-out-mini/data.json'
-        #self.send_json_file_via_ssh(local_path, ssh_host, ssh_port, ssh_username, ssh_password, remote_path)
+        remote_path = '/home/itlab/cam/inside-out-server/data.json'
+        self.send_json_file_via_ssh(local_path, ssh_host, ssh_port, ssh_username, ssh_password, remote_path)
+
+    def run_start_script(self) -> None:
+        #SSH connection information for the Raspberry Pi
+        ssh_host = '192.168.30.123'
+        ssh_port = 22 
+        ssh_username = 'itlab'
+        ssh_password = '1234'
+        script_path = '/home/itlab/start.sh'
+
+        try:
+            #SSH connection
+            ssh = paramiko.SSHClient()
+            ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            ssh.connect(ssh_host, port=ssh_port, username=ssh_username, password=ssh_password)
+            print("SSH connected")
+            
+            #start tmux session and run sh
+            command = f'tmux new-session -d -s my_session "bash {script_path}"'
+            stdin, stdout, stderr = ssh.exec_command(command)
+            print("Script executed within tmux session")
+
+            ssh.close()
+            print("SSH connection closed")
+
+            print("Shell script successfully started within a tmux session.")
+        except Exception as e:
+            print(f"Error executing the shell script over SSH: {e}")
+
+
+    def stop_tmux_session(self) -> None:
+        #SSH connection information for the Raspberry Pi
+        ssh_host = '192.168.30.123'
+        ssh_port = 22 
+        ssh_username = 'itlab'
+        ssh_password = '1234'
+        tmux_session_name = 'my_session'  #tmux session name
+
+        try:
+            #SSH connection
+            ssh = paramiko.SSHClient()
+            ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            ssh.connect(ssh_host, port=ssh_port, username=ssh_username, password=ssh_password)
+            print("SSH connected")
+            
+            #termination signal to sh script
+            stdin, stdout, stderr = ssh.exec_command(f'tmux send-keys -t {tmux_session_name} C-c')
+            print("Script terminated")
+
+            #close tmux session
+            stdin, stdout, stderr = ssh.exec_command(f'tmux kill-session -t {tmux_session_name}')
+            print("Tmux session closed")
+
+            ssh.close()
+            print("SSH connection closed")
+
+            print(f"Tmux session '{tmux_session_name}' successfully stopped.")
+        except Exception as e:
+            print(f"Error stopping the tmux session over SSH: {e}")

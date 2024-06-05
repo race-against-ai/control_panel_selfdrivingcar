@@ -48,8 +48,8 @@ Window {
     signal timerResetFull()
     signal timerIgnore()
 
-    property string background_color_start_light: "#e1e8f5"
-    property string background_color_stop_light: "#a5acb8"
+    property string background_color_start_light: "#64e275"
+    property string background_color_stop_light: "#5fd06e"
 
     property string light_grey: "#bfbfbf"
 
