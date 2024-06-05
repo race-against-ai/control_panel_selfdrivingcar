@@ -1,6 +1,6 @@
 # Control Panel Self-Driving Car
 
-This is a graphical user interface (GUI) panel to control the self-driving car.
+This is a GUI panel to control the self-driving car.
 
 Functions of the components:
 - **Buttons**:
