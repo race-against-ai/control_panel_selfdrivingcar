@@ -1,4 +1,4 @@
-# Control panel Selfdrivingcar
+# Control panel Selfdriving car
 
 Panel with GUI to start the selfdiving car.
 
