@@ -20,4 +20,4 @@ How to start:
 2. Adjust the sliders for curvespeed and straightlinespeed.
 3. Enable the motor button.
 
-**Important:** Do not close the control panel before turning off the start button!
+**!!Important:!!** Do not close the control panel before turning off the start button!
