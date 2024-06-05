@@ -12,8 +12,8 @@ Functions of the components:
   - Fullscreen: Switches the GUI to fullscreen mode.
   
 - **Vertical Sliders**:
-  - Curvespeed: Adjusts the car's speed in curves (maximum value).
-  - Straightlinespeed: Adjusts the car's speed on straight lines (maximum value).
+  - Curvespeed: Adjusts the car's speed in curves (max: ).
+  - Straightlinespeed: Adjusts the car's speed on straight lines (max: ).
 
 How to start:
 1. Start the GUI.
