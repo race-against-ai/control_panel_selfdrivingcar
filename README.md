@@ -1,23 +1,39 @@
-# Control Panel Self-Driving Car
+# Control Panel for Self-Driving Car  
 
-This is a GUI panel to control the self-driving car.
+The **Control Panel** serves as the main GUI interface to control and monitor the self-driving car. It allows users to adjust the car's behavior, stream its current view, and manage various operational aspects.  
 
-Functions of the components:
-- **Buttons**:
-  - Start: Initiates the main loop of the car. It must be enabled for all other functions and disabled when you stop the GUI.
-  - Stream: Streams the current view of the car.
-  - Motor: Enables the driving functions of the car (the motor button on the car must be enabled).
-  - Process: Displays the processing times of different algorithm parts.
-  - Debug: [Functionality not specified]
-  - Fullscreen: Switches the GUI to fullscreen mode.
-  
-- **Vertical Sliders**:
-  - Curvespeed: Adjusts the car's speed in curves (max: ).
-  - Straightlinespeed: Adjusts the car's speed on straight lines (max: ).
+## Features  
 
-How to start:
-1. Start the GUI.
-2. Adjust the sliders for curvespeed and straightlinespeed.
-3. Enable the motor button.
+### Buttons  
 
-**Important:** Do not close the control panel before turning off the start button!
+- **Start**: Initiates the car's main loop. Note: This button must be enabled to activate all other functionalities. Ensure it is disabled before stopping the GUI.  
+
+- **Stream**: Displays the live camera feed from the car.  
+
+- **Motor**: Activates the car's driving functions. Note: The motor button on the car must also be enabled.  
+
+- **Process**: Shows the processing times of different parts of the car's algorithms.  
+
+- **Debug**: [Functionality to be defined].  
+
+- **Fullscreen**: Switches the GUI to fullscreen mode for better visibility.  
+
+### Vertical Sliders  
+
+- **Curvespeed**: Adjusts the car's speed when navigating curves.
+
+- **Straightlinespeed**: Adjusts the car's speed when driving on straight lines. 
+
+## Usage  
+
+### Steps to Operate the Control Panel  
+
+1. Launch the GUI.  
+2. Adjust the **Curvespeed** and **Straightlinespeed** sliders to set the car's desired behavior.  
+3. Enable the **Motor** button to activate the driving functions.  
+4. Use the **Start** button to begin the car's main loop.  
+5. Optionally, enable additional features like **Stream**, **Process**, or **Fullscreen** for monitoring and optimization.  
+
+### Important Note  
+
+Before closing the control panel, ensure the **Start** button is turned off to safely stop the car's operations.  
